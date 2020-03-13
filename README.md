@@ -24,11 +24,26 @@ This sprint challenge is divided up into three parts:  Hash tables coding, block
 
 Explain in detail the workings of a dynamic array:
 * What is the runtime complexity to access an array, add or remove from the front, and add or remove from the back?
+
+  -- simply accessing an array is constant, as is removing from the end or adding to the end of an array that is not yet full. But if you want to add to/remove from the front, or add to an already full array, your time becomes (worst case) linear. 
+
 * What is the worse case scenario if you try to extend the storage size of a dynamic array?
+
+  -- technically, if you were only extending the storage size by a single spot, you'd have linear time. But because dynamic arrays adjust in larger chunks (such as doubling), the runtime is 'amortized' and considered constant.
 
 Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
  
+blocks are objects which hold data - usually some type of transaction - as well as a time stamp, the previous block as a hashed string, and a proof. The prev hash and the proof respectively form the links of the chain, and the blocks go in order. 
+
 Explain how proof of work functions. How does it operate. How does this protect the chain from attack. What kind of attack is possible?
+
+The proof is the closest thing to a puzzle we can currently give a computer; it's easy to recognize as correct (usually because it has a certain number of trailing zeros or matching characters with the previous proof), yet it takes a long time for the computer to solve. 
+
+Because each block is hashed when included in the next block, and hashes change entirely from a single character change in the block, it's impossible to change anything in the block without breaking the chain.
+
+So to hack the chain, you'd have to manipulate the block's data AND the data of every single block after it through the end of the chain, BEFORE someone else finds the next block. 
+
+Technically speaking, this kind of brute force attack is possible - but the probability of anyone getting that lucky is so small as to be statistically insignificant. 
 
 ## Project Set Up
 
